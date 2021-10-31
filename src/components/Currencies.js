@@ -11,11 +11,15 @@ const Currencies = ({ currencies }) => {
   };
 
   return (
-    <>
+    <div>
       <label>Currency</label>
+
+      {console.log(currency)}
       <select name="currency" value={currency} onChange={(e) => handleCurrency(e)}>
+        <option value={null}>-</option>
         {Object.entries(currencies).map((currency, i) => {
           const currencyName = currency[0];
+
           return (
             <option key={i} value={currency}>
               {currencyName}
@@ -23,7 +27,7 @@ const Currencies = ({ currencies }) => {
           );
         })}
       </select>
-    </>
+    </div>
   );
 };
 

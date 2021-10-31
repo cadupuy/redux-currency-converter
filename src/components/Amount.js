@@ -15,10 +15,10 @@ const Amount = ({ setMessage }) => {
   };
 
   return (
-    <>
+    <div>
       <label>Amount</label>
       <input type="number" min="0" name="amount" value={amount} onChange={(e) => handleAmount(e)} />
-    </>
+    </div>
   );
 };
 

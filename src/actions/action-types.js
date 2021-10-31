@@ -1,5 +1,5 @@
-import { AMOUNT, CURRENCY, DATE } from "../constants/actions";
-// import axios from "axios";
+import { AMOUNT, CURRENCY, CURRENCIES, DATE } from "../constants/actions";
+import axios from "axios";
 
 export const setAmount = (payload) => {
   return {
@@ -22,24 +22,20 @@ export const setDate = (payload) => {
   };
 };
 
-// export const getSymbols = () => {
-//   return (dispatch) => {
-//     (async () => {
-//       try {
-// const headers = {
-//   "Content-Type": "application/json",
-// };
-// const { data } = await axios.get(`http://data.fixer.io/api/symbols?access_key=${API_KEY_FIXER}`, headers);
-// const { symbols } = data;
-// if (success === false) throw new Error("Axios ");
-// dispatch({
-//   type: INIT_RATES,
-//   symbols,
-// });
-// dispatch(set_isloagingConvert(false));
-//       } catch (err) {
-//         console.error("Axios getApiFixer :", err);
-//       }
-//     })();
-//   };
-// };
+export const setCurrencies = (date) => {
+  return (dispatch) => {
+    (async () => {
+      try {
+        let apiKey = `http://data.fixer.io/api/${date}?access_key=${process.env.REACT_APP_FIXER_API_KEY}`;
+        const response = await axios.get(apiKey);
+        dispatch({
+          type: CURRENCIES,
+          payload: response.data.rates,
+        });
+        // dispatch(set_isloagingConvert(false));
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  };
+};

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setDate } from "../actions/action-types";
+import { setDate, setCurrencies } from "../actions/action-types";
 
 const Date = () => {
   const dispatch = useDispatch();
@@ -9,10 +9,11 @@ const Date = () => {
 
   const handleChangeDate = (e) => {
     dispatch(setDate(e.target.value));
+    dispatch(setCurrencies(e.target.value));
   };
 
   return (
-    <>
+    <div>
       <label>Date</label>
       <input
         type="date"
@@ -21,7 +22,7 @@ const Date = () => {
         value={date}
         onChange={(e) => handleChangeDate(e)}
       />
-    </>
+    </div>
   );
 };
 
